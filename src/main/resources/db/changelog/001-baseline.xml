@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.4.xsd"
+                   logicalFilePath="001-baseline.xml">
+
+    <changeSet id="task-model" author="nikita.ojamae">
+        <sql>
+            CREATE TABLE task.task
+            (
+                id          SERIAL PRIMARY KEY,
+                title       VARCHAR(127) NOT NULL,
+                description TEXT,
+                priority    VARCHAR(63)  NOT NULL,
+                deadline    TIMESTAMP,
+                created_at  TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                created_by  VARBINARY(16)  NOT NULL,
+                modified_at TIMESTAMP    NOT NULL,
+                modified_by VARBINARY(16)  NOT NULL
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="comment-model" author="nikita.ojamae">
+        <sql>
+            CREATE TABLE task.comment
+            (
+                id          SERIAL PRIMARY KEY,
+                task_id     BIGINT UNSIGNED NOT NULL,
+                content     TEXT,
+                created_at  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                created_by  VARBINARY(16) NOT NULL,
+                modified_at TIMESTAMP   NOT NULL,
+                modified_by VARBINARY(16) NOT NULL,
+                CONSTRAINT fk_comment_task FOREIGN KEY (task_id)
+                    REFERENCES task.task (id)
+            );
+
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

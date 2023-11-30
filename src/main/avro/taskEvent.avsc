@@ -1,0 +1,67 @@
+{
+  "type": "record",
+  "name": "TaskEvent",
+  "namespace": "ee.pawadeck.tasks",
+  "doc": "Notify about task update",
+  "fields": [
+    {
+      "name": "taskId",
+      "type": "long",
+      "default": -1
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "priority",
+      "type": {
+        "type": "enum",
+        "name": "Priority",
+        "symbols": [
+          "LOW",
+          "MEDIUM",
+          "HIGH",
+          "CRITICAL"
+        ]
+      }
+    },
+    {
+      "name": "eventType",
+      "type": {
+        "type": "enum",
+        "name": "EventType",
+        "symbols": [
+          "CREATED",
+          "DELETED",
+          "UPDATED"
+        ]
+      },
+      "default": "UPDATED"
+    },
+    {
+      "name": "deadline",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      },
+      "default": -1
+    },
+    {
+      "name": "createdBy",
+      "type": "string",
+      "default": ""
+    },
+    {
+      "name": "lastEditBy",
+      "type": "string",
+      "default": ""
+    }
+  ]
+}
