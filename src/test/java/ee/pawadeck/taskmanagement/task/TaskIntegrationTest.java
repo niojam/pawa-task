@@ -1,7 +1,6 @@
 package ee.pawadeck.taskmanagement.task;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.dockerjava.api.model.Task;
 import ee.pawadeck.taskmanagement.EnableTestcontainers;
 import ee.pawadeck.taskmanagement.comment.model.CommentModel;
 import ee.pawadeck.taskmanagement.comment.repository.CommentRepository;
@@ -11,9 +10,7 @@ import ee.pawadeck.taskmanagement.task.model.Priority;
 import ee.pawadeck.taskmanagement.task.model.TaskModel;
 import ee.pawadeck.taskmanagement.task.repository.TaskRepository;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +19,6 @@ import org.springframework.data.domain.AuditorAware;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.Instant;
@@ -37,13 +33,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-@Tag("integration")
 @SpringBootTest
 @SqlGroup({
         @Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = "classpath:db/task/test-data.sql"),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:db/task/delete-data.sql"),
 })
-@ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc(addFilters = false)
 @EnableTestcontainers
 public class TaskIntegrationTest {
