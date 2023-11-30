@@ -42,7 +42,7 @@ password: toomas
 
 ## Architecture
 
-[image]
+![alt text](./architecture.png)
 
 
 ### Description
