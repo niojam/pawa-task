@@ -93,4 +93,4 @@ UserIfnoProvider should be responsible to decide if use cache or ask userInfo fr
 16. No vue-router on front-end as only 1 page was implemented.
 17. Front-end keycloak configuration is hard-coded.
 18. Work was not divided by proper commits.
-
+19. Kafka messaging is not transactinoal (no outbox tables). 
