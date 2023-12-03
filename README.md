@@ -13,6 +13,8 @@ For building and running the application you need:
 1. Run ```docker-compose up```
 2. Run ```task-management``` application
 
+NB! Make sure you use ```local``` profile
+
 There are several ways to run a Spring Boot application on your local machine. One way is to execute the `main` method in the `ee/inbank/decisionengine/DecisionEngineApplication.java` class from your IDE.
 
 Alternatively you can use the gradle wrapper like so:
